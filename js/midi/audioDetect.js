@@ -38,6 +38,15 @@ if (typeof MIDI === 'undefined') MIDI = {};
 	};
 
 	root.audioDetect = function(onsuccess) {
+
+		var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+    	var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+		if (isSafari) {
+			supports['howler'] = true;
+			return onsuccess(supports);
+		}
+
 		/// detect jazz-midi plugin
 		if (navigator.requestMIDIAccess) {
 			var isNative = Function.prototype.toString.call(navigator.requestMIDIAccess).indexOf('[native code]');

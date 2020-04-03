@@ -59,7 +59,11 @@ MIDI.Player = MIDI.Player || {};
 				api = 'webaudio';
 			} else if (window.Audio) { // Firefox
 				api = 'audiotag';
+			} else {
+				api = 'howler';
 			}
+
+			console.log("MIDI.js Using api: " + api);
 
 			if (connect[api]) {
 				/// use audio/ogg when supported
@@ -113,6 +117,9 @@ MIDI.Player = MIDI.Player || {};
 	};
 
 	var connect = {
+		howler: function(opts) {
+			requestQueue(opts, 'Howler');
+		},
 		webmidi: function(opts) {
 			// cant wait for this to be standardized!
 			root.WebMIDI.connect(opts);

@@ -114,6 +114,8 @@ midi.loadMidiFile = function(onsuccess, onprogress, onerror) {
 		///
 		MIDI.loadPlugin({
 // 			instruments: midi.getFileInstruments(),
+			soundfontUrl: "/assets/deps/midi/soundfont/",
+			instruments: ["acoustic_grand_piano", "synth_drum"],
 			onsuccess: onsuccess,
 			onprogress: onprogress,
 			onerror: onerror
@@ -279,7 +281,7 @@ var startAudio = function(currentTime, fromCache, onsuccess) {
 	var interval = eventQueue[0] && eventQueue[0].interval || 0;
 	var foffset = currentTime - midi.currentTime;
 	///
-	if (MIDI.api !== 'webaudio') { // set currentTime on ctx
+	if (MIDI.api !== 'webaudio' && MIDI.api !== "howler") { // set currentTime on ctx
 		var now = getNow();
 		__now = __now || now;
 		ctx.currentTime = (now - __now) / 1000;

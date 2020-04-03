@@ -20,6 +20,7 @@ module.exports = function (grunt) {
 				'js/midi/gm.js',
 				'js/midi/loader.js',
 				'js/midi/player.js',
+				'js/midi/plugin.howler.js',
 				'js/midi/plugin.audiotag.js',
 				'js/midi/plugin.webaudio.js',
 				'js/midi/plugin.webmidi.js',
